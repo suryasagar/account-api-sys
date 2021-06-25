@@ -34,9 +34,9 @@
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>4.3.0</muleVersion>
-						<username>MrudulaReddy</username>
-						<password>Krishna@0725</password>
-						<applicationName>accounts-sys-sapi</applicationName>
+						<username>SagarKumarm</username>
+						<password>Surya123@</password>
+						<applicationName>vvv-accounts-sys-sapi</applicationName>
 						<environment>Sandbox</environment>
 						<workers>1</workers>
 						<workerType>MICRO</workerType>
