@@ -40,6 +40,7 @@
 						<environment>Sandbox</environment>
 						<workers>1</workers>
 						<workerType>MICRO</workerType>
+						<objectStoreV2>true</objectStoreV2>
 						<properties>
 							<environment>dev</environment>
 							<secure.key>password12345678</secure.key>
