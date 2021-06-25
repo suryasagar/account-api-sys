@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	
+	<flow name="get-accounts-flow" doc:id="c2a4ced3-8937-444e-9b2d-b196d4f41500" >
+		<logger level="INFO" doc:name="Logger" doc:id="cb1f0d03-ca8e-4a13-81f1-735d151b41b6" message='"Get Accounts : Started"'/>
+		<choice doc:name="Choice" doc:id="8c122403-3944-4373-ad7f-57cfe5bf4b47" >
+			<when expression="#[isEmpty(attributes.queryParams.'Id')]">
+				<salesforce:query doc:name="Query" doc:id="9d3da2c8-0c9e-464b-9331-338bd17e21ef" config-ref="Salesforce_Config">
+			<salesforce:salesforce-query><![CDATA[SELECT Id,Name,Type,BillingStreet from Account]]></salesforce:salesforce-query>
+		</salesforce:query>
+			</when>
+			<otherwise >
+				<salesforce:query doc:name="Query" doc:id="237b7653-7040-4e86-b095-1303d2a526da" config-ref="Salesforce_Config" >
+					<salesforce:salesforce-query ><![CDATA[SELECT Id,Name,Type,BillingStreet from Account where Id = ':id']]></salesforce:salesforce-query>
+					<salesforce:parameters ><![CDATA[#[output application/java
+---
+{
+	"id" : attributes.queryParams.'Id'
+}]]]></salesforce:parameters>
+				</salesforce:query>
+			</otherwise>
+		</choice>
+		<ee:transform doc:name="Transform Message" doc:id="be7e2501-6a47-4d39-b90d-bb6d7bd48b03" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="create-accounts-flow" doc:id="b8e143a0-bbcf-4d48-b99c-1c22c48c1aa5" >
+		<logger level="INFO" doc:name="Logger" doc:id="cb88088a-8757-4d03-ae5e-dcc7aec8c1aa" message="Create Accounts : Started"/>
+		<ee:transform doc:name="Transform Message" doc:id="8402de6a-e678-4020-83c7-e3b4fd63abe5" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+ [{
+        "Type": payload."Type",
+        "BillingStreet": payload.BillingStreet,
+        //"Id": "0015g00000AwHZXAA3",
+        "type": payload."type",
+        "Name": payload."Name",
+        "BillingCountry": payload."BillingCountry"
+    }
+    
+    ]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<salesforce:create type="Account" doc:name="Create" doc:id="9a18bb59-3d44-495a-99ec-041451bd77de" config-ref="Salesforce_Config"/>
+		<ee:transform doc:name="Transform Message" doc:id="19d15391-b87b-42e7-be3c-93732416d793" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="1db3fa86-361b-453e-af8b-e96cfd0a224e" message="out : #[payload]"/>
+	</flow>
+	<flow name="accounts-api-implFlow" doc:id="3ae2bd12-85ae-4a5f-a3b7-44318a895ef1" >
+		<http:request method="GET" doc:name="Request" doc:id="fa2a4a39-5b67-4db8-a335-f3a36eb45b8d" config-ref="ddd_HTTP_Request_configuration" path="/users"/>
+	</flow>
+	<flow name="accounts-api-implFlow1" doc:id="f18b6ac1-b44e-4373-86be-dc3e4180b082" >
+		<http:request method="POST" doc:name="Request" doc:id="59e79e52-7fd6-46b2-9e94-f1abe88e18d1" config-ref="ddd_HTTP_Request_configuration" path="/users"/>
+	</flow>
+	<flow name="accounts-api-implFlow2" doc:id="c1ad1bb6-ba1d-4bd4-b4cb-c88c2b837c0e" >
+		<http:request method="GET" doc:name="Request" doc:id="4332f50d-d652-46ef-8882-d6b75e4226bf" config-ref="ddd_HTTP_Request_configuration" path="/asffas"/>
+	</flow>
+</mule>

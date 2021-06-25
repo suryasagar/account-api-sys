@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<munit:config name="accounts-api-impl-test-suite.xml" />
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="8e7eb32e-ed14-412f-987a-19085526f0dd" basePath="/api" >
+		<http:request-connection host="localhost" port="8081" />
+	</http:request-config>
+	<munit:test name="accounts-api-impl-test-suite-get-accounts-flowTest1" doc:id="1c60fbbf-e02a-4f65-9767-32d29dd11b5b" description="Test">
+		<munit:enable-flow-sources >
+			<munit:enable-flow-source value="accounts-api-main" />
+			<munit:enable-flow-source value="get:\accounts:accounts-api-config" />
+			<munit:enable-flow-source value="get-accounts-flow" />
+		</munit:enable-flow-sources>
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock default salesforce query" doc:id="794d9be1-8457-48d6-8d65-d5efed9f8d4a" processor="salesforce:query">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Query" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="237b7653-7040-4e86-b095-1303d2a526da" attributeName="doc:id" />
+					<munit-tools:with-attribute whereValue="Salesforce_Config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[&#10;[&#10;  {&#10;    "Type": "Customer - Direct",&#10;    "BillingStreet": "101001312 Constitution Place Austin, TX 78767 USA",&#10;    "Id": "0015g00000E7eIZAAZ",&#10;    "type": "Account",&#10;    "Name": "Valuebrains Communications"&#10;  },&#10;  {&#10;    "Type": "Customer - Direct",&#10;    "BillingStreet": "101001312 Constitution Place\nAustin, TX 78767\nUSA",&#10;    "Id": "0015g00000AwHbEAAV",&#10;    "type": "Account",&#10;    "Name": "MuleSoftEdge Communications"&#10;  },&#10;  {&#10;    "Type": "Customer - Direct",&#10;    "BillingStreet": "312 Constitution Place\nAustin, TX 78767\nUSA",&#10;    "Id": "0015g00000AeVb8AAF",&#10;    "type": "Account",&#10;    "Name": "Edge Communications"&#10;  },&#10;  {&#10;    "Type": "Customer - Direct",&#10;    "BillingStreet": "525 S. Lexington Ave",&#10;    "Id": "0015g00000AeVb9AAF",&#10;    "type": "Account",&#10;    "Name": "Burlington Textiles Corp of America"&#10;  },&#10;  {&#10;    "Type": "Customer - Channel",&#10;    "BillingStreet": "2 Place Jussieu",&#10;    "Id": "0015g00000AeVbAAAV",&#10;    "type": "Account",&#10;    "Name": "Pyramid Construction Inc."&#10;  },&#10;  {&#10;    "Type": "Customer - Channel",&#10;    "BillingStreet": "1301 Hoch Drive",&#10;    "Id": "0015g00000AeVbBAAV",&#10;    "type": "Account",&#10;    "Name": "Dickenson plc"&#10;  },&#10;  {&#10;    "Type": "Customer - Direct",&#10;    "BillingStreet": "2334 N. Michigan Avenue, Suite 1500\nChicago, IL 60601, USA",&#10;    "Id": "0015g00000AeVbCAAV",&#10;    "type": "Account",&#10;    "Name": "Grand Hotels &amp; Resorts Ltd"&#10;  },&#10;  {&#10;    "Type": "Customer - Direct",&#10;    "BillingStreet": "1301 Avenue of the Americas \nNew York, NY 10019\nUSA",&#10;    "Id": "0015g00000AeVbDAAV",&#10;    "type": "Account",&#10;    "Name": "United Oil &amp; Gas Corp."&#10;  },&#10;  {&#10;    "Type": "Customer - Channel",&#10;    "BillingStreet": "620 SW 5th Avenue Suite 400\nPortland, Oregon 97204\nUnited States",&#10;    "Id": "0015g00000AeVbEAAV",&#10;    "type": "Account",&#10;    "Name": "Express Logistics and Transport"&#10;  },&#10;  {&#10;    "Type": "Customer - Direct",&#10;    "BillingStreet": "888 N Euclid \nHallis Center, Room 501\nTucson, AZ 85721\nUnited States",&#10;    "Id": "0015g00000AeVbFAAV",&#10;    "type": "Account",&#10;    "Name": "University of Arizona"&#10;  },&#10;  {&#10;    "Type": "Customer - Direct",&#10;    "BillingStreet": "Kings Park, 17th Avenue, Team Valley Trading Estate,\nGateshead, Tyne and Wear NE26 3HS\nUnited Kingdom",&#10;    "Id": "0015g00000AeVbGAAV",&#10;    "type": "Account",&#10;    "Name": "United Oil &amp; Gas, UK"&#10;  },&#10;  {&#10;    "Type": "Customer - Direct",&#10;    "BillingStreet": "9 Tagore Lane\nSingapore, Singapore 787472\nSingapore",&#10;    "Id": "0015g00000AeVbHAAV",&#10;    "type": "Account",&#10;    "Name": "United Oil &amp; Gas, Singapore"&#10;  },&#10;  {&#10;    "Type": "Customer - Channel",&#10;    "BillingStreet": "345 Shoreline Park\nMountain View, CA 94043\nUSA",&#10;    "Id": "0015g00000AeVbIAAV",&#10;    "type": "Account",&#10;    "Name": "GenePoint"&#10;  },&#10;  {&#10;    "Type": null,&#10;    "BillingStreet": "The Landmark @ One Market",&#10;    "Id": "0015g00000AeVbJAAV",&#10;    "type": "Account",&#10;    "Name": "sForce"&#10;  },&#10;  {&#10;    "Type": "Customer-Indirect",&#10;    "BillingStreet": "SJR2,BLR",&#10;    "Id": "0015g00000AwHZXAA3",&#10;    "type": "Account",&#10;    "Name": "Wipro"&#10;  },&#10;  {&#10;    "Type": null,&#10;    "BillingStreet": null,&#10;    "Id": "0015g00000AwHY0AAN",&#10;    "type": "Account",&#10;    "Name": "Sample Account for Entitlements"&#10;  },&#10;  {&#10;    "Type": "Customer - Direct",&#10;    "BillingStreet": "101001312 Constitution Place\nAustin, TX 78767\nUSA",&#10;    "Id": "0015g00000AwHb9AAF",&#10;    "type": "Account",&#10;    "Name": "MuleSoftEdge Communications"&#10;  }&#10;]]' mediaType="application/java" />
+					<munit-tools:attributes value="#[statusCode : 200]" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<http:request method="GET" doc:name="Request" doc:id="3cbcdc01-3961-4ebb-9a9f-f911abc9d6b6" config-ref="HTTP_Request_configuration" path="/accounts">
+				<http:headers ><![CDATA[#[output application/java
+---
+{
+	"client-id" : "Value",
+	"client-secret" : "secret"
+}]]]></http:headers>
+			</http:request>
+		</munit:execution>
+		<munit:validation >
+			<logger level="INFO" doc:name="Logger" doc:id="7375c7dc-d8c0-47d8-9e8c-b5e28563225c" message="Test case : #[payload]"/>
+			<set-variable value="#[MunitTools::getResourceAsString('get-accounts.json')]" doc:name="Set Expected Output" doc:id="a3e8898f-f455-435e-873f-5786338eaee6" variableName="expectedOutput" mimeType="application/json"/>
+			<munit-tools:assert-that doc:name="Assert that Payload" doc:id="63488dcc-f775-4f52-ba09-9a26df5f7814" expression="#[payload]" is="#[MunitTools::equalTo(vars.expectedOutput)]" message="The response payload is not correct!" />
+		</munit:validation>
+	</munit:test>
+<!-- Negative Test Cases Start -->
+    <munit:test name="munit-global-bad-request-response-sub-flow" description="Verifying functionality of global-bad-request-response-sub-flow" doc:id="e5fd901a-5ecc-459b-966c-a19bc2c6bf83" ignore="true">
+		<munit:enable-flow-sources >
+			<munit:enable-flow-source value="accounts-api-main" />
+			<munit:enable-flow-source value="get:\accounts:accounts-api-config" />
+		</munit:enable-flow-sources>
+		<munit:execution>
+			<http:request method="GET" doc:name="HTTP Request" doc:id="953d9bc5-8c26-441f-b796-dafa14bbe3c3" config-ref="HTTP_Request_configuration" path="/accounts">
+				<http:headers><![CDATA[#[output application/java
+---
+{
+	"Content-Type" : "application/json",
+	"client-id" : "client-id"
+}]]]></http:headers>
+<http:query-params ><![CDATA[#[output application/java
+---
+{
+	'Id': '' }]]]></http:query-params>
+				<http:response-validator >
+					<http:success-status-code-validator values="300..500" />
+				</http:response-validator>
+			</http:request>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert That Status Code is 400" doc:id="7ee37ff5-6030-4c3e-86af-a29570f29bff" expression="#[attributes.statusCode]" is="#[MunitTools::equalTo(200)]" message="The HTTP Status code is not correct!" />
+		</munit:validation>
+	</munit:test>
+	    <munit:test name="munit-global-resource-not-found-response-sub-flow" description="Verifying functionality of global-resource-not-found-response-sub-flow" doc:id="84404dd8-bb12-43fc-a5af-eb2897f5b77f">
+		<munit:enable-flow-sources >
+			<munit:enable-flow-source value="accounts-api-main" />
+			<munit:enable-flow-source value="get:\accounts:accounts-api-config" />
+			<munit:enable-flow-source value="get:\accounts:accounts-api-config" />
+
+		</munit:enable-flow-sources>
+		<munit:execution>
+			<http:request method="GET" doc:name="HTTP Request" doc:id="9a91cc2d-9ef5-456a-b525-1416aae62475" config-ref="HTTP_Request_configuration" path="/employees">
+				<http:headers><![CDATA[#[output application/java
+---
+{
+	"Content-Type" : "application/json",
+	"client-id" : "client-id",
+	"client-secret" : "client-secret"
+}]]]></http:headers>
+				<http:response-validator >
+					<http:success-status-code-validator values="300..500" />
+				</http:response-validator>
+			</http:request>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert That Status Code is 404" doc:id="47b9c4c7-ecc7-4e84-bf2a-f94c1de25d1c" expression="#[attributes.statusCode]" is="#[MunitTools::equalTo(404)]" message="The HTTP Status code is not correct!" />
+		</munit:validation>
+	</munit:test>
+		    <munit:test name="munit-global-method-not-allowed-response-sub-flow" description="Verifying functionality of global-method-not-allowed-response-sub-flow" doc:id="3ea8c179-1336-468d-bd78-4877cbefea5f">
+		<munit:enable-flow-sources >
+			<munit:enable-flow-source value="accounts-api-main" />
+			<munit:enable-flow-source value="get:\accounts:accounts-api-config" />
+
+		</munit:enable-flow-sources>
+		<munit:execution>
+			<http:request method="PUT" doc:name="HTTP Request" doc:id="7a2f2b33-c9cc-43ff-baf3-05f6a3684a34" config-ref="HTTP_Request_configuration" path="/accounts">
+				<http:headers><![CDATA[#[output application/java
+---
+{
+	"Content-Type" : "application/json",
+	"client-id" : "client-id",
+	"client-secret" : "client-secret"
+}]]]></http:headers>
+				<http:response-validator >
+					<http:success-status-code-validator values="300..500" />
+				</http:response-validator>
+			</http:request>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-that doc:name="Assert That Status Code is 405" doc:id="f7da11d1-e252-48cf-b11c-a4291b1f116a" expression="#[attributes.statusCode]" is="#[MunitTools::equalTo(405)]" message="The HTTP Status code is not correct!" />
+		</munit:validation>
+	</munit:test>
+</mule>

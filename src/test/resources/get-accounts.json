@@ -1,0 +1,121 @@
+[
+  {
+    "Type": "Customer - Direct",
+    "BillingStreet": "101001312 Constitution Place Austin, TX 78767 USA",
+    "Id": "0015g00000E7eIZAAZ",
+    "type": "Account",
+    "Name": "Valuebrains Communications"
+  },
+  {
+    "Type": "Customer - Direct",
+    "BillingStreet": "101001312 Constitution Place\nAustin, TX 78767\nUSA",
+    "Id": "0015g00000AwHbEAAV",
+    "type": "Account",
+    "Name": "MuleSoftEdge Communications"
+  },
+  {
+    "Type": "Customer - Direct",
+    "BillingStreet": "312 Constitution Place\nAustin, TX 78767\nUSA",
+    "Id": "0015g00000AeVb8AAF",
+    "type": "Account",
+    "Name": "Edge Communications"
+  },
+  {
+    "Type": "Customer - Direct",
+    "BillingStreet": "525 S. Lexington Ave",
+    "Id": "0015g00000AeVb9AAF",
+    "type": "Account",
+    "Name": "Burlington Textiles Corp of America"
+  },
+  {
+    "Type": "Customer - Channel",
+    "BillingStreet": "2 Place Jussieu",
+    "Id": "0015g00000AeVbAAAV",
+    "type": "Account",
+    "Name": "Pyramid Construction Inc."
+  },
+  {
+    "Type": "Customer - Channel",
+    "BillingStreet": "1301 Hoch Drive",
+    "Id": "0015g00000AeVbBAAV",
+    "type": "Account",
+    "Name": "Dickenson plc"
+  },
+  {
+    "Type": "Customer - Direct",
+    "BillingStreet": "2334 N. Michigan Avenue, Suite 1500\nChicago, IL 60601, USA",
+    "Id": "0015g00000AeVbCAAV",
+    "type": "Account",
+    "Name": "Grand Hotels & Resorts Ltd"
+  },
+  {
+    "Type": "Customer - Direct",
+    "BillingStreet": "1301 Avenue of the Americas \nNew York, NY 10019\nUSA",
+    "Id": "0015g00000AeVbDAAV",
+    "type": "Account",
+    "Name": "United Oil & Gas Corp."
+  },
+  {
+    "Type": "Customer - Channel",
+    "BillingStreet": "620 SW 5th Avenue Suite 400\nPortland, Oregon 97204\nUnited States",
+    "Id": "0015g00000AeVbEAAV",
+    "type": "Account",
+    "Name": "Express Logistics and Transport"
+  },
+  {
+    "Type": "Customer - Direct",
+    "BillingStreet": "888 N Euclid \nHallis Center, Room 501\nTucson, AZ 85721\nUnited States",
+    "Id": "0015g00000AeVbFAAV",
+    "type": "Account",
+    "Name": "University of Arizona"
+  },
+  {
+    "Type": "Customer - Direct",
+    "BillingStreet": "Kings Park, 17th Avenue, Team Valley Trading Estate,\nGateshead, Tyne and Wear NE26 3HS\nUnited Kingdom",
+    "Id": "0015g00000AeVbGAAV",
+    "type": "Account",
+    "Name": "United Oil & Gas, UK"
+  },
+  {
+    "Type": "Customer - Direct",
+    "BillingStreet": "9 Tagore Lane\nSingapore, Singapore 787472\nSingapore",
+    "Id": "0015g00000AeVbHAAV",
+    "type": "Account",
+    "Name": "United Oil & Gas, Singapore"
+  },
+  {
+    "Type": "Customer - Channel",
+    "BillingStreet": "345 Shoreline Park\nMountain View, CA 94043\nUSA",
+    "Id": "0015g00000AeVbIAAV",
+    "type": "Account",
+    "Name": "GenePoint"
+  },
+  {
+    "Type": null,
+    "BillingStreet": "The Landmark @ One Market",
+    "Id": "0015g00000AeVbJAAV",
+    "type": "Account",
+    "Name": "sForce"
+  },
+  {
+    "Type": "Customer-Indirect",
+    "BillingStreet": "SJR2,BLR",
+    "Id": "0015g00000AwHZXAA3",
+    "type": "Account",
+    "Name": "Wipro"
+  },
+  {
+    "Type": null,
+    "BillingStreet": null,
+    "Id": "0015g00000AwHY0AAN",
+    "type": "Account",
+    "Name": "Sample Account for Entitlements"
+  },
+  {
+    "Type": "Customer - Direct",
+    "BillingStreet": "101001312 Constitution Place\nAustin, TX 78767\nUSA",
+    "Id": "0015g00000AwHb9AAF",
+    "type": "Account",
+    "Name": "MuleSoftEdge Communications"
+  }
+]

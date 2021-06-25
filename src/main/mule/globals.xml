@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway"
+	xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+	xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd">
+<http:listener-config name="accounts-api-httpListenerConfig">
+        <http:listener-connection host="${api.http.listener.host}" port="${api.http.listener.port}" />
+    </http:listener-config>
+    <apikit:config name="accounts-api-config" api="accounts-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    <configuration-properties doc:name="Configuration properties" doc:id="16c4abca-10d6-4f98-b05a-1c59e2a595f5" file="mule.env-${environment}.yaml" />
+	<global-property doc:name="Global Property" doc:id="29b0eb97-8d99-4ddf-9067-445712eb7729" name="environment" value="dev" />
+<salesforce:sfdc-config name="Salesforce_Config" doc:name="Salesforce Config" doc:id="b5335f8b-b745-4510-b6ce-74ddd312213e" >
+		<salesforce:basic-connection username="${saleforce.username}" password="${secure::saleforce.password}" securityToken="#[p('secure::saleforce.secureToken')]" />
+	</salesforce:sfdc-config>
+	<configuration doc:name="Configuration" doc:id="4c88045f-a3f3-437a-951d-48498c14ab32" defaultErrorHandler-ref="global-exceptionsError_Handler" />
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="21b6c9b4-aa67-40e8-ba96-27fb1b98274d" file="mule.env-${environment}.yaml" key="${secure.key}" />
+	<global-property doc:name="Global Property" doc:id="6e8fa82e-6e3f-4751-8c47-1f7497f6172d" name="secure.key" value="password12345678" />
+	<http:request-config name="ddd_HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="b6b63a54-f32e-4375-b72a-e1530a07c714" >
+		<http:request-connection host="loalhost" port="8081" />
+	</http:request-config>
+	<http:request-config name="user_HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="0cba0718-b9e8-42e4-a971-ff2b74295740">
+		<http:request-connection protocol="HTTPS" host="reqres.in" port="443" />
+	</http:request-config>
+	<api-gateway:autodiscovery apiId="${api.id}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="db636956-4507-438a-961c-2151f11aa7de" flowRef="accounts-api-main" />	
+	
+
+</mule>
